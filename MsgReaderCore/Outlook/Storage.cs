@@ -243,12 +243,13 @@ namespace MsgReader.Outlook
         #endregion
 
         #region GetMapiProperty
+
         /// <summary>
         /// Gets the raw value of the MAPI property.
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier. </param>
         /// <returns> The raw value of the MAPI property. </returns>
-        private object GetMapiProperty(string propIdentifier)
+        public object GetMapiProperty(string propIdentifier)
         {
             Logger.WriteToLog($"Getting property with id '{propIdentifier}'");
 
@@ -407,14 +408,14 @@ namespace MsgReader.Outlook
         {
             var data = GetMapiPropertyBytes(propIdentifier);
             return data != null ? new UnsendableRecipients(data) : null;
-        } 
+        }
 
         /// <summary>
         /// Gets the value of the MAPI property as a string.
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier.</param>
         /// <returns> The value of the MAPI property as a string. </returns>
-        private string GetMapiPropertyString(string propIdentifier)
+        public string GetMapiPropertyString(string propIdentifier)
         {
             return GetMapiProperty(propIdentifier) as string;
         }
@@ -424,7 +425,7 @@ namespace MsgReader.Outlook
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier.</param>
         /// <returns> The value of the MAPI property as a list of string. </returns>
-        private ReadOnlyCollection<string> GetMapiPropertyStringList(string propIdentifier)
+        public ReadOnlyCollection<string> GetMapiPropertyStringList(string propIdentifier)
         {
             var list = GetMapiProperty(propIdentifier) as List<string>;
             return list?.AsReadOnly();
@@ -435,7 +436,7 @@ namespace MsgReader.Outlook
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier. </param>
         /// <returns> The value of the MAPI property as a integer. </returns>
-        private int? GetMapiPropertyInt32(string propIdentifier)
+        public int? GetMapiPropertyInt32(string propIdentifier)
         {
             return (int?)GetMapiProperty(propIdentifier);
         }
@@ -445,7 +446,7 @@ namespace MsgReader.Outlook
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier.</param>
         /// <returns> The value of the MAPI property as a double. </returns>
-        private double? GetMapiPropertyDouble(string propIdentifier)
+        public double? GetMapiPropertyDouble(string propIdentifier)
         {
             return (double?) GetMapiProperty(propIdentifier);
         }
@@ -455,7 +456,7 @@ namespace MsgReader.Outlook
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier.</param>
         /// <returns> The value of the MAPI property as a datetime or null when not set </returns>
-        private DateTime? GetMapiPropertyDateTime(string propIdentifier)
+        public DateTime? GetMapiPropertyDateTime(string propIdentifier)
         {
             return (DateTime?)GetMapiProperty(propIdentifier);
         }
@@ -465,7 +466,7 @@ namespace MsgReader.Outlook
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier.</param>
         /// <returns> The value of the MAPI property as a boolean or null when not set. </returns>
-        private bool? GetMapiPropertyBool(string propIdentifier)
+        public bool? GetMapiPropertyBool(string propIdentifier)
         {
             return (bool?)GetMapiProperty(propIdentifier); 
         }
@@ -475,7 +476,7 @@ namespace MsgReader.Outlook
         /// </summary>
         /// <param name="propIdentifier"> The 4 char hexadecimal prop identifier.</param>
         /// <returns> The value of the MAPI property as a byte array. </returns>
-        private byte[] GetMapiPropertyBytes(string propIdentifier)
+        public byte[] GetMapiPropertyBytes(string propIdentifier)
         {
             return (byte[])GetMapiProperty(propIdentifier);
         }
